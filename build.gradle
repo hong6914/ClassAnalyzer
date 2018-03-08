@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.ow2.asm:asm-all:5.2'
+}
+
+// Sets the project version
+version = currentVersion
+group = currentGroupId
+
+// Set java versions to Java 7
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+jar {
+    baseName currentArtifactId
+    // include all runtime dependencies
+    from {configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+
+    manifest {
+        attributes(
+            "Implementation-Title": "Class Analysis Tool to Loop Through Directories and JARs For Classes and Method Definitions", 
+            "Implementation-Version": currentVersion,
+            "Main-Class": "${currentGroupId}.classanalyzer.Main"
+        )
+    }
+}
