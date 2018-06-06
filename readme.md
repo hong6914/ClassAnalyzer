@@ -1,6 +1,6 @@
 # ClassAnalyzer
 An easy Java tool based on ASM to parse the JAR files in directories recursively, and print out all the classes, the fields and member methods for quick search and reversing analysis.
-
+ 
 ## Dependencies
 - Gradle 1.12
 - ASM 5.2
